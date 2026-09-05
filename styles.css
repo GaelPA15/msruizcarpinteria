@@ -350,3 +350,170 @@ footer p {
     align-items: flex-start;
   }
 }
+
+/* ========================================
+   BOTÓN PARA VER LA IMAGEN COMPLETA
+======================================== */
+
+.ver-imagen {
+  display: block;
+  width: 100%;
+  padding: 11px 15px;
+  border: 0;
+  border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
+  background: var(--negro);
+  color: var(--blanco);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ver-imagen:hover,
+.ver-imagen:focus-visible {
+  background: var(--cafe-oscuro);
+}
+
+/* ========================================
+   VISOR / LIGHTBOX
+======================================== */
+
+.visor-imagen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.visor-imagen.activo {
+  display: flex;
+}
+
+.visor-contenido {
+  position: relative;
+  width: min(1120px, 96%);
+  max-height: calc(100vh - 48px);
+  background: var(--blanco);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+}
+
+.visor-foto {
+  min-width: 0;
+  min-height: 420px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.visor-foto img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 84px);
+  object-fit: contain;
+}
+
+.visor-info {
+  min-width: 0;
+  padding: 48px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.visor-info h2 {
+  margin-bottom: 12px;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.visor-info p {
+  color: var(--gris);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.visor-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.visor-volver {
+  align-self: flex-start;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  background: var(--negro);
+  color: var(--blanco);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.visor-volver:hover,
+.visor-volver:focus-visible {
+  background: var(--cafe-oscuro);
+}
+
+body.visor-abierto {
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .visor-imagen {
+    padding: 12px;
+  }
+
+  .visor-contenido {
+    max-height: calc(100vh - 24px);
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .visor-foto {
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .visor-foto img {
+    max-height: 62vh;
+  }
+
+  .visor-info {
+    padding: 24px 20px;
+    overflow: visible;
+  }
+
+  .visor-info h2 {
+    font-size: 1.4rem;
+    padding-right: 42px;
+  }
+
+  .visor-volver {
+    width: 100%;
+  }
+}
